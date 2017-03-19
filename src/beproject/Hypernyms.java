@@ -56,6 +56,7 @@ public class Hypernyms {
             chart.pack( );        
             RefineryUtilities.centerFrameOnScreen( chart );        
             chart.setVisible( true );
+            
 
         }
         catch (IOException e) {
