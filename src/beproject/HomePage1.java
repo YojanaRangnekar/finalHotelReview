@@ -28,6 +28,7 @@ public class HomePage1 extends JFrame implements ActionListener
     Container c;
 
     JButton poptates_Btn, wild_dining_Btn, blue_frog_Btn, candies_Btn;
+    JButton compare_food_Btn, compare_ambience_Btn, compare_cost_Btn, compare_service_Btn;
     JButton test_Btn;
 
     JLabel lb1, lb2, lb3, lb_txt, test;
@@ -82,13 +83,13 @@ public class HomePage1 extends JFrame implements ActionListener
         lb_txt.setFont(font_home);
         lb_txt.setForeground(left);
 
-        test = new JLabel();
+        /*test = new JLabel();
         String s = "Would you like to test a review?";
         test.setText(s);
         jp_btn.add(test);
         test.setBounds(10, 550, 1000, 30);
         test.setFont(font_home);
-        test.setForeground(left);
+        test.setForeground(left);*/
 
         BufferedImage img2 = null;
         try {
@@ -116,16 +117,32 @@ public class HomePage1 extends JFrame implements ActionListener
         candies_Btn = new JButton("Candies");
 
         poptates_Btn.setFont(font_home1);
-
         wild_dining_Btn.setFont(font_home1);
         blue_frog_Btn.setFont(font_home1);
         candies_Btn.setFont(font_home1);
-
+               
         poptates_Btn.setBounds(100, 100, 200, 50);
         wild_dining_Btn.setBounds(100, 200, 200, 50);
         blue_frog_Btn.setBounds(100, 400, 200, 50);
         candies_Btn.setBounds(100, 300, 200, 50);
 
+        //adding compare button
+        
+        compare_food_Btn = new JButton("Compare Food");
+        compare_service_Btn = new JButton("Compare service");
+        compare_cost_Btn = new JButton("Compare Cost");
+        compare_ambience_Btn = new JButton("Compare Ambience");
+
+        compare_food_Btn.setFont(font_home1);
+        compare_service_Btn.setFont(font_home1);
+        compare_cost_Btn.setFont(font_home1);
+        compare_ambience_Btn.setFont(font_home1);
+
+        compare_food_Btn.setBounds(400, 100, 200, 50);
+        compare_service_Btn.setBounds(400, 200, 200, 50);
+        compare_cost_Btn.setBounds(400, 400, 200, 50);
+        compare_ambience_Btn.setBounds(400, 300, 200, 50);
+        
         txt = new JTextField(100);
         txt.setBounds(50, 600, 400, 30);
 
@@ -146,19 +163,43 @@ public class HomePage1 extends JFrame implements ActionListener
         candies_Btn.setBackground
                 (Color.white);
         candies_Btn.setForeground(right);
+        
+        compare_food_Btn.setBackground(Color.white);
+        compare_food_Btn.setForeground(right);
+        compare_cost_Btn.setBackground
+                (Color.white);
+        compare_cost_Btn.setForeground(right);
+        compare_service_Btn.setBackground
+                (Color.white);
+        compare_service_Btn.setForeground(right);
+        compare_ambience_Btn.setBackground
+                (Color.white);
+        compare_ambience_Btn.setForeground(right);
 
         poptates_Btn.addActionListener(this);
         wild_dining_Btn.addActionListener(this);
         blue_frog_Btn.addActionListener(this);
         candies_Btn.addActionListener(this);
-        test_Btn.addActionListener(this);
+        
+        compare_food_Btn.addActionListener(this);
+        compare_cost_Btn.addActionListener(this);
+        compare_service_Btn.addActionListener(this);
+        compare_ambience_Btn.addActionListener(this);
+        
+        //test_Btn.addActionListener(this);
 
         jp_btn.add(poptates_Btn);
         jp_btn.add(wild_dining_Btn);
         jp_btn.add(blue_frog_Btn);
         jp_btn.add(candies_Btn);
-        jp_btn.add(txt);
-        jp_btn.add(test_Btn);
+        
+        jp_btn.add(compare_food_Btn);
+        jp_btn.add(compare_service_Btn);
+        jp_btn.add(compare_cost_Btn);
+        jp_btn.add(compare_ambience_Btn);
+        
+       /* jp_btn.add(txt);
+        jp_btn.add(test_Btn);*/
 
         c.add(jp);
         c.add(jp_btn);
@@ -238,8 +279,52 @@ public class HomePage1 extends JFrame implements ActionListener
 
             this.dispose();
         }
+        
+        if (ae.getSource() == compare_food_Btn)
+        {
+            // compare the food for all four restruarants.
+            
+            Hypernyms hy = new Hypernyms();
+            hy.setupcompare("food");
 
-        if (ae.getSource() == test_Btn)
+           /* try {
+                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(3, "");
+                obj.setVisible(true);
+                obj.setExtendedState(6);
+            }
+            catch (Exception e) {
+            }
+
+            this.dispose();*/
+        }
+        
+        if (ae.getSource() == compare_cost_Btn)
+        {
+            // candies 
+
+            Hypernyms hy = new Hypernyms();
+            hy.setupcompare("cost");
+
+        }
+        
+        if (ae.getSource() == compare_service_Btn)
+        {
+            // candies 
+
+            Hypernyms hy = new Hypernyms();
+            hy.setupcompare("service");
+        }
+        
+        if (ae.getSource() == compare_ambience_Btn)
+        {
+            // candies 
+
+            Hypernyms hy = new Hypernyms();
+            hy.setupcompare("ambience");
+
+        }
+
+       /* if (ae.getSource() == test_Btn)
         {
             review = txt.getText();
             if (review.equals(""))
@@ -256,7 +341,7 @@ public class HomePage1 extends JFrame implements ActionListener
 
             }
 
-        }
+        }*/
 
     }
 
