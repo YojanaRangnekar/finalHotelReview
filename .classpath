@@ -30,5 +30,7 @@
 	<classpathentry kind="lib" path="D:/Users/Admin/Documents/Yrch/New Project/stanford-postagger-2016-10-31/stanford-postagger-3.7.0-javadoc.jar"/>
 	<classpathentry kind="lib" path="D:/Users/Admin/Documents/Yrch/New Project/stanford-postagger-2016-10-31/stanford-postagger-3.7.0-sources.jar"/>
 	<classpathentry kind="lib" path="D:/Users/Admin/Documents/Yrch/New Project/stanford-postagger-2016-10-31/stanford-postagger-3.7.0.jar"/>
+	<classpathentry kind="lib" path="jars/activation.jar"/>
+	<classpathentry kind="lib" path="jars/mail.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
