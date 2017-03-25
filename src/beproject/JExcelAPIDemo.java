@@ -33,9 +33,12 @@ import edu.stanford.nlp.util.CoreMap;
 public class JExcelAPIDemo
 {
     protected StanfordCoreNLP pipeline;
+    
+    String user;
 
-    JExcelAPIDemo(int id, String rev) throws Exception
+    JExcelAPIDemo(int id, String rev, String userType) throws Exception
     {
+        user = userType;
         String hotel = "";
         String[] stopwords = { "a",
                               "about",
@@ -353,7 +356,7 @@ public class JExcelAPIDemo
 
             Hypernyms h = new Hypernyms();
 
-            h.setup(hotel, lem);
+            h.setup(hotel, lem, user);
 
         }
 
@@ -457,7 +460,7 @@ public class JExcelAPIDemo
 
             Hypernyms h = new Hypernyms();
             
-            h.setup(hotel, lem);
+            h.setup(hotel, lem, user);
         }
     }
 

@@ -25,6 +25,7 @@ import javax.swing.*;
 public class HomePage1 extends JFrame implements ActionListener
 {
 
+    String user;
     Container c;
 
     JButton poptates_Btn, wild_dining_Btn, blue_frog_Btn, candies_Btn;
@@ -38,9 +39,9 @@ public class HomePage1 extends JFrame implements ActionListener
     String review;
     JTextField txt;
 
-    HomePage1() throws IOException
+    HomePage1(String userType) throws IOException
     {
-
+        user=userType;
         BufferedImage img = null;
         try {
             File file = new File("images/E.gif");
@@ -182,7 +183,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // Poptates    
 
             try {
-                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(1, "");
+                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(1, "",user);
                 obj.setVisible(true);
                 obj.setExtendedState(6);
             }
@@ -198,7 +199,7 @@ public class HomePage1 extends JFrame implements ActionListener
             //   Wild Dining  
 
             try {
-                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(2, "");
+                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(2, "", user);
                 obj.setVisible(true);
                 obj.setExtendedState(6);
             }
@@ -213,7 +214,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // Blue Frog
 
             try {
-                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(4, "");
+                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(4, "", user);
                 obj.setVisible(true);
                 obj.setExtendedState(6);
             }
@@ -229,7 +230,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // candies 
 
             try {
-                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(3, "");
+                Poptates_Homepage1_try obj = new Poptates_Homepage1_try(3, "", user);
                 obj.setVisible(true);
                 obj.setExtendedState(6);
             }
@@ -249,7 +250,7 @@ public class HomePage1 extends JFrame implements ActionListener
             }
 
             try {
-                JExcelAPIDemo j1 = new JExcelAPIDemo(0, review);
+                JExcelAPIDemo j1 = new JExcelAPIDemo(0, review, user);
             }
             catch (Exception e)
             {
@@ -262,7 +263,7 @@ public class HomePage1 extends JFrame implements ActionListener
 
     public static void main(String args[]) throws IOException
     {
-        HomePage1 f = new HomePage1();
+        HomePage1 f = new HomePage1("user");
 
         Color backg = new Color(190, 50, 80);
 

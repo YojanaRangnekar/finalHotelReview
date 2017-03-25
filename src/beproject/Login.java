@@ -247,11 +247,14 @@ public class Login extends JFrame implements ActionListener {
 
                         Cell cell2 = sheet.getCell(1, i);
                         String pwd = (cell2.getContents()).toString();
+                        
+                        Cell cell3 = sheet.getCell(2, i);
+                        String userType = (cell3.getContents()).toString();
 
                         if (u_l.toString().equals(user) && p_l.toString().equals(pwd))
                         {
                             flag = 1;
-                            HomePage1 h = new HomePage1();
+                            HomePage1 h = new HomePage1(userType);
                             h.setVisible(true);
                             h.setExtendedState(6);
                             this.dispose();
@@ -276,7 +279,7 @@ public class Login extends JFrame implements ActionListener {
                 u_r = un_reg.getText();
                 p_r = password_r.getText();
                 n_r = name_txt.getText();
-
+                String userType = "user";
                 if ((u_r).equalsIgnoreCase("") || p_r.equalsIgnoreCase("") || n_r.equalsIgnoreCase(""))
                 {
                     JOptionPane.showMessageDialog(c, "Fields cannot be empty!");
@@ -288,6 +291,7 @@ public class Login extends JFrame implements ActionListener {
 
                 else
                 {
+                 
                     File file = new File("Login.xls");
                     String abPath = file.getAbsolutePath();
 
@@ -314,7 +318,10 @@ public class Login extends JFrame implements ActionListener {
                         wsheet.addCell(m);
                         Label n = new Label(1, row, pwd);
                         wsheet.addCell(n);
-
+                        Cell cell_ut = sheet.getCell(2, row);
+                        String type = (cell_ut.getContents()).toString();
+                        Label o = new Label(2, row, type);
+                        wsheet.addCell(o);
                     }
 
                     int Rows = wsheet.getRows();
@@ -327,6 +334,8 @@ public class Login extends JFrame implements ActionListener {
                     wsheet.addCell(label_u);
                     Label label_p = new Label(1, Rows + 1, p_r);
                     wsheet.addCell(label_p);
+                    Label label_ut = new Label(2, Rows + 1, userType);
+                    wsheet.addCell(label_ut);
 
                     JOptionPane.showMessageDialog(c, "REGISTERED! PLEASE LOGIN");
 

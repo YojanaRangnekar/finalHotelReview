@@ -45,7 +45,7 @@ public class BarChart_AWT extends ApplicationFrame
     private JTextField emailTextBox;
     private HashMap<String, Double> resultset;
 
-    public BarChart_AWT(String applicationTitle, String chartTitle, String hotel, Map<String, Double> result)
+    public BarChart_AWT(String applicationTitle, String chartTitle, String hotel, Map<String, Double> result, String userType)
     {
         super(applicationTitle);
         System.out.println("counts**********"+result.get("Good review"));
@@ -109,8 +109,10 @@ public class BarChart_AWT extends ApplicationFrame
         });
 
         jPanel.add(chartPanel);
-        jPanel.add(emailTextBox);
-        jPanel.add(submit);
+        if (("ADMIN").equalsIgnoreCase(userType)){
+            jPanel.add(emailTextBox);
+            jPanel.add(submit);
+        }
         setContentPane(jPanel);
         
         this.addWindowListener(new WindowAdapter() {
@@ -142,10 +144,18 @@ public class BarChart_AWT extends ApplicationFrame
        Map<String, Double> result = new HashMap<String, Double>();
        result.put("Bad", 13d);
        result.put("Good", 10d);
-       BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Which one is better?","Poptates",result);
+       BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Which one is better?","Poptates",result,"ADMIN");
        chart.pack( );        
        RefineryUtilities.centerFrameOnScreen( chart );        
        chart.setVisible( true ); 
+       
+       Map<String, Double> result1 = new HashMap<String, Double>();
+       result1.put("Bad", 13d);
+       result1.put("Good", 10d);
+       BarChart_AWT chart1 = new BarChart_AWT("Hotel Statistics", "Which one is better?","Poptates",result,"USER");
+       chart1.pack( );        
+       RefineryUtilities.centerFrameOnScreen( chart1 );        
+       chart1.setVisible( true ); 
     }
     
 }

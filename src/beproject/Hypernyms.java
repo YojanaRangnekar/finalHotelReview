@@ -10,8 +10,9 @@ import org.jfree.ui.RefineryUtilities;
 
 public class Hypernyms {
 
-    public void setup(String hotel, String lem) {
-
+    String user;
+    public void setup(String hotel, String lem, String userType) {
+        user = userType;
         try {
             NewExcel ne = new NewExcel();
             ne.setInputFile(lem);
@@ -52,7 +53,7 @@ public class Hypernyms {
             result.put("Good review", positiveCount);
             result.put("Bad review", negativeCount);
             
-            BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Now you know!!!",hotel,result);
+            BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Now you know!!!",hotel,result, user);
             chart.pack( );        
             RefineryUtilities.centerFrameOnScreen( chart );        
             chart.setVisible( true );

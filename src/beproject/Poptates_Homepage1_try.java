@@ -47,6 +47,7 @@ import javax.swing.JTextArea;
 public class Poptates_Homepage1_try extends JFrame implements ActionListener
 
 {
+    String user;
     Font font_head = new Font("Tekton Pro", Font.BOLD, 20);
     Container c, c1;
     Button view_result_poptates, back;
@@ -64,9 +65,9 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
     String str = "";
     static int a;
 
-    Poptates_Homepage1_try(int id, String rev) throws IOException
+    Poptates_Homepage1_try(int id, String rev, String userType) throws IOException
     {
-
+        user = userType;
         pop_icon = new ImageIcon("images/poptates_img.jpg");
 
         String path = new String();
@@ -94,7 +95,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
                 pop_icon = new ImageIcon("images/blue-frog-logo.jpg");
             }
             if (id == 0)
-                j1 = new JExcelAPIDemo(0, rev);
+                j1 = new JExcelAPIDemo(0, rev, user);
         }
         catch (Exception e) {
         }
@@ -245,7 +246,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
             {
                 //this.dispose();
 
-                JExcelAPIDemo j = new JExcelAPIDemo(a, "");
+                JExcelAPIDemo j = new JExcelAPIDemo(a, "", user);
             }
             catch (Exception e)
             {
@@ -256,7 +257,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
         if (ae.getSource() == back)
         {
             try {
-                HomePage1 h = new HomePage1();
+                HomePage1 h = new HomePage1(user);
                 h.setVisible(true);
                 h.setExtendedState(6);
             }
@@ -271,7 +272,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
 
     public static void main(String args[]) throws IOException
     {
-        Poptates_Homepage1_try pop = new Poptates_Homepage1_try(1, "");
+        Poptates_Homepage1_try pop = new Poptates_Homepage1_try(1, "", "user");
 
         Color backg = new Color(190, 50, 80);
 
