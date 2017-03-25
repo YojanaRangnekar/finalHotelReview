@@ -41,6 +41,10 @@ public class JExcelAPIDemo
         user = userType;
         String hotel = "";
         String[] stopwords = { "a",
+                               "ly",
+                               "that",
+                               "this",
+                               "ing",
                               "about",
                               "above",
                               "after",
@@ -167,7 +171,7 @@ public class JExcelAPIDemo
                               "was",
                               "we",
                               "we'd",
-                              "we'll",
+                              "'ll",
                               "we're",
                               "we've",
                               "were",
@@ -376,7 +380,7 @@ public class JExcelAPIDemo
 
             int i = 1;
 
-            for (i = 1; i <= 50; i++)
+            for (i = 1; i <= 100; i++)
             {
                 Cell cell1;
 
