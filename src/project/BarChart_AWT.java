@@ -7,7 +7,7 @@
  *
  */
 
-package beproject;
+package project;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -44,10 +44,12 @@ public class BarChart_AWT extends ApplicationFrame
     private JButton submit;
     private JTextField emailTextBox;
     private HashMap<String, Double> resultset;
-
-    public BarChart_AWT(String applicationTitle, String chartTitle, String hotel, Map<String, Double> result, String userType)
+    private String hotel = "";
+    
+    public BarChart_AWT(String applicationTitle, String chartTitle, final String hotel, Map<String, Double> result, String userType)
     {
         super(applicationTitle);
+        this.hotel = hotel;
         System.out.println("counts**********"+result.get("Good review"));
         JFreeChart barChart = ChartFactory.createBarChart(
                 chartTitle,
@@ -86,7 +88,8 @@ public class BarChart_AWT extends ApplicationFrame
                 if (email != null && !email.isEmpty()){
                     //sending an email if threshold is less than 50
                     double threshold = 50;
-                    StringBuilder message = new StringBuilder("Following are the reviews below ").append(threshold).append(" : ");
+                    //hotel = this.hotel;
+                    StringBuilder message = new StringBuilder("Following are the reviews below ").append(threshold).append(" for "+ hotel).append(" : ");
                     boolean isLessReview = false;
                     Iterator it = resultset.entrySet().iterator();
                     while (it.hasNext()) {

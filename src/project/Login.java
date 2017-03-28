@@ -1,5 +1,5 @@
 
-package beproject;
+package project;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -330,11 +330,11 @@ public class Login extends JFrame implements ActionListener {
 
                     //read-write version
 
-                    Label label_u = new Label(0, Rows + 1, u_r);
+                    Label label_u = new Label(0, Rows, u_r);
                     wsheet.addCell(label_u);
-                    Label label_p = new Label(1, Rows + 1, p_r);
+                    Label label_p = new Label(1, Rows, p_r);
                     wsheet.addCell(label_p);
-                    Label label_ut = new Label(2, Rows + 1, userType);
+                    Label label_ut = new Label(2, Rows, userType);
                     wsheet.addCell(label_ut);
 
                     JOptionPane.showMessageDialog(c, "REGISTERED! PLEASE LOGIN");

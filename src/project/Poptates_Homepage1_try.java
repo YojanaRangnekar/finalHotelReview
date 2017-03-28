@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package beproject;
+package project;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
@@ -16,6 +16,7 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.TextArea;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -26,6 +27,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -36,9 +38,18 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
 
 /**
  *
@@ -56,13 +67,16 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
     Font f;
     ImageIcon pop_icon;
     Button open1;
+    Button add_review;
     JMenuBar mbar;
     JMenu file;
     JMenuItem open, exit;
     JTextArea text_area;
+    JTextField txt_review;
     JScrollPane sp1;
     String command;
     String str = "";
+    String str_filename = "";
     static int a;
 
     Poptates_Homepage1_try(int id, String rev, String userType) throws IOException
@@ -161,7 +175,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
         catch (IOException e) {
             e.printStackTrace();
         }
-        Image dimg = img.getScaledInstance(400, 200, Image.SCALE_SMOOTH);
+        Image dimg = img.getScaledInstance(400, 150, Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         pop_pic = new JLabel();
         pop_pic.setIcon(imageIcon);
@@ -170,7 +184,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
         jp1.setBackground(backg);
 
         
-        Image dimg1 = img1.getScaledInstance(400, 400, Image.SCALE_SMOOTH);
+        Image dimg1 = img1.getScaledInstance(400, 350, Image.SCALE_SMOOTH);
         ImageIcon imageIcon1 = new ImageIcon(dimg1);
         pop_details = new JLabel();
         pop_details.setIcon(imageIcon1);
@@ -186,6 +200,23 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
         view_result_poptates.setFont(font_home2);
         view_result_poptates.setBounds(20, 600, 60, 30);
         view_result_poptates.addActionListener(this);
+        
+        txt_review = new JTextField();
+        jp1.add(txt_review);
+        txt_review.setBackground(Color.WHITE);
+        txt_review.setForeground(Color.BLACK);
+        txt_review.setFont(font_home2);
+        txt_review.setBounds(20, 600, 60, 30);
+       // txt_review.addActionListener(this);
+        
+        add_review = new Button("Add Review");
+        jp1.add(add_review);
+        add_review.setBackground(backg);
+        add_review.setForeground(Color.white);
+        add_review.setFont(font_home2);
+        add_review.setBounds(20, 600, 60, 30);
+        add_review.addActionListener(this);
+
 
         back = new Button("BACK");
         jp1.add(back);
@@ -194,7 +225,7 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
         back.setFont(font_home2);
         back.setBounds(20, 600, 60, 30);
         back.addActionListener(this);
-
+        
         c.add(jp2, BorderLayout.WEST);
 
         c.add(jp1, BorderLayout.WEST);
@@ -266,6 +297,89 @@ public class Poptates_Homepage1_try extends JFrame implements ActionListener
 
             }
             this.dispose();
+        }
+        
+        if (ae.getSource() == add_review)
+        {
+            String filename = "";
+            try
+            {
+                if (a == 1)
+                {
+                    str_filename = "resources/final_Poptates-1.xls";
+                    filename = "final_Poptates-1.xls";
+                }
+                if (a == 2)
+                {
+                    str_filename = "resources/final_WildDining-2.xls";
+                    filename = "final_WildDining-2.xls";
+                }
+                if (a == 3)
+                {
+                    str_filename = "resources/final_Candies.xls";
+                    filename = "final_Candies.xls";
+                }
+                if (a == 4)
+                {
+                    str_filename = "resources/final_Bluefrog-1.xls";
+                    filename = "final_Bluefrog-1.xls";
+                }
+                
+                File file = new File(filename);
+                //String abPath = file.getAbsolutePath();
+
+                File f1 = new File("resources/"+filename);
+                System.out.println("going to enter exists");
+                System.out.println("Path: "+ f1.toString());
+                System.out.println(f1.exists());
+
+                Workbook workbook = Workbook.getWorkbook(f1);
+                Sheet sheet = workbook.getSheet(0);
+
+                int rows_read = sheet.getRows();
+
+                WritableWorkbook w = Workbook.createWorkbook(f1);
+                WritableSheet wsheet = w.createSheet("First Sheet", 0);
+                
+                String u_r = txt_review.getText();
+
+                for (int row = 0; row < rows_read; ++row)
+                {
+                    Cell cell_r = sheet.getCell(1, row);
+                    String review = (cell_r.getContents()).toString();
+
+                    Label n = new Label(1, row, review);
+                    wsheet.addCell(n);
+//                    Cell cell_ut = sheet.getCell(2, row);
+//                    String type = (cell_ut.getContents()).toString();
+//                    Label o = new Label(2, row, type);
+//                    wsheet.addCell(o);
+                }
+
+                int Rows = wsheet.getRows();
+
+                System.out.println("Rows " + Rows);
+
+                //read-write version
+
+//                String u_r = txt_review.getText();
+                Label label_u = new Label(1, Rows, u_r);
+                wsheet.addCell(label_u);
+
+                JOptionPane.showMessageDialog(c, "Review added to " + filename);
+
+//                un_reg.setText("");
+//                password_r.setText("");
+//                name_txt.setText("");
+
+                w.write();
+                w.close();
+
+            }
+            catch (Exception e)
+            {
+                System.out.println(e.getMessage());
+            }
         }
 
     }

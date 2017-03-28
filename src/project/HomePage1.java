@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package beproject;
+package project;
 
 /*
  * To change this template, choose Tools | Templates
@@ -147,7 +147,7 @@ public class HomePage1 extends JFrame implements ActionListener
         txt = new JTextField(100);
         txt.setBounds(50, 600, 400, 30);
 
-        test_Btn = new JButton("Submit");
+        test_Btn = new JButton("Logout");
         test_Btn.setFont(font_home1);
         test_Btn.setBounds(100, 640, 200, 50);
         test_Btn.setBackground(left);
@@ -187,7 +187,7 @@ public class HomePage1 extends JFrame implements ActionListener
         compare_service_Btn.addActionListener(this);
         compare_ambience_Btn.addActionListener(this);
         
-        //test_Btn.addActionListener(this);
+        test_Btn.addActionListener(this);
 
         jp_btn.add(poptates_Btn);
         jp_btn.add(wild_dining_Btn);
@@ -199,8 +199,8 @@ public class HomePage1 extends JFrame implements ActionListener
         jp_btn.add(compare_cost_Btn);
         jp_btn.add(compare_ambience_Btn);
         
-       /* jp_btn.add(txt);
-        jp_btn.add(test_Btn);*/
+       /* jp_btn.add(txt);*/
+        jp_btn.add(test_Btn);
 
         c.add(jp);
         c.add(jp_btn);
@@ -286,7 +286,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // compare the food for all four restruarants.
             
             Hypernyms hy = new Hypernyms();
-            hy.setupcompare("food");
+            hy.setupcompare("food", user);
 
            /* try {
                 Poptates_Homepage1_try obj = new Poptates_Homepage1_try(3, "");
@@ -304,7 +304,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // candies 
 
             Hypernyms hy = new Hypernyms();
-            hy.setupcompare("cost");
+            hy.setupcompare("cost", user);
 
         }
         
@@ -313,7 +313,7 @@ public class HomePage1 extends JFrame implements ActionListener
             // candies 
 
             Hypernyms hy = new Hypernyms();
-            hy.setupcompare("service");
+            hy.setupcompare("service", user);
         }
         
         if (ae.getSource() == compare_ambience_Btn)
@@ -321,10 +321,25 @@ public class HomePage1 extends JFrame implements ActionListener
             // candies 
 
             Hypernyms hy = new Hypernyms();
-            hy.setupcompare("ambience");
+            hy.setupcompare("ambience", user);
 
         }
 
+        if (ae.getSource() == test_Btn)
+        {
+            try {
+                Login l = new Login();
+                l.setVisible(true);
+                l.setExtendedState(6);
+                
+            }
+            catch (Exception e)
+            {
+                
+            }
+            this.dispose();
+        }
+        
        /* if (ae.getSource() == test_Btn)
         {
             review = txt.getText();

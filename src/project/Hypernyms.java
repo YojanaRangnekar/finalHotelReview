@@ -1,5 +1,5 @@
 
-package beproject;
+package project;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -76,7 +76,8 @@ public class Hypernyms {
             result.put("Cost review", (costCount));
             result.put("Ambience review", (ambienceCount));
             
-            BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Below is the count of Good Reviews", hotel,result, user);
+            //BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Below is the count of Good Reviews", hotel,result, user);
+            BarChart_AWT chart = new BarChart_AWT("Hotel Statistics", "Below is the count of Good Reviews", hotel, result, user);
             chart.pack( );        
             RefineryUtilities.centerFrameOnScreen( chart );        
             chart.setVisible( true );
@@ -88,7 +89,7 @@ public class Hypernyms {
         }
     }
 
-    public void setupcompare(String feature) {
+    public void setupcompare(String feature, String user) {
 
         try {
             
@@ -232,20 +233,8 @@ public class Hypernyms {
                 result.put("Blue Frog", (bambienceTotal));
                 result.put("Candies", (cambienceTotal));
             }
-                                   
-//            foodCount = getDataList(foodList, foodWords, null, foodCount);
-            
-//            serviceCount = getDataList(serviceList, serviceWords, null, serviceCount);
-            
-//            ambienceCount = getDataList(ambienceList, ambienceWords, null, ambienceCount);
-            
-          //  Double foodPercent = (foodTotal/foodCount)*100;
-            //Double count = foodTotal+ambienceTotal+serviceTotal+costTotal;
-//            result.put("Food review", (foodCount));
-//            result.put("Service review", (serviceCount));
-//            result.put("Cost review", (costCount));
-//            result.put("Ambience review", (ambienceCount));            
-            BarChart_AWT chart = new BarChart_AWT("Feature based Hotel Statistics", "Below is the count of Good Reviews", feature,result, user);
+                                              
+            BarChart_AWT chart = new BarChart_AWT("Feature based Hotel Statistics", "Below is the count of Good Reviews", feature, result, user);
             chart.pack( );        
             RefineryUtilities.centerFrameOnScreen( chart );        
             chart.setVisible( true );
@@ -264,6 +253,9 @@ public class Hypernyms {
      * @param costTotal
      * @param d
      * @return
+     * 
+     * getting sentiword related to the category for the related feature.
+     * from the sentiword excel under each category list for mentioned categories.
      */
     private Double getFeatureCount(List<String> costdata, List<String> costList, Double costTotal, String d) {
         for(Iterator iterator = costdata.iterator(); iterator.hasNext();)
@@ -279,7 +271,10 @@ public class Hypernyms {
         return costTotal;
     }
 
-    //pcostTotal = getDataList(poptatesdata, pcostdata, pcostList, pcostTotal);
+    
+    //getting feature related data from the total review excel using the feature 
+    //category related word from the sentiwordcategory excel where we have 
+    //separated data for each category.
     private Double getDataList(List<String> data, List<String> listValidData, List<String> dataList, Double dataTotal) {
         for (String cost : listValidData) {
             for (Iterator iterator = data.iterator(); iterator.hasNext();) {

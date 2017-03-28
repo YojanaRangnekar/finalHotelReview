@@ -1,5 +1,5 @@
 
-package beproject;
+package project;
 
 /**
  *
@@ -12,16 +12,13 @@ import java.util.*;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
-
 import jxl.read.biff.BiffException;
-
 import jxl.write.Label;
 import jxl.write.Number;
 import jxl.write.WritableCell;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
-
 import edu.stanford.nlp.ling.CoreAnnotations.LemmaAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.SentencesAnnotation;
 import edu.stanford.nlp.ling.CoreAnnotations.TokensAnnotation;
@@ -40,7 +37,14 @@ public class JExcelAPIDemo
     {
         user = userType;
         String hotel = "";
-        String[] stopwords = { "a",
+        NewExcel ne = new NewExcel();
+        //ne.setInputFile(lem);        
+        //List<String> data = ne.read(1);
+        
+        //To identify the comment category.
+        ne.setInputFile("resources/stopwords.xls");
+        List<String> stopwords = ne.read(0);
+        /*String[] stopwords = { "a",
                                "ly",
                                "that",
                                "this",
@@ -217,7 +221,7 @@ public class JExcelAPIDemo
                               "6",
                               "7",
                               "8",
-                              "9" };
+                              "9" };*/
 
         String review_excel = new String();
         /*String path = new String("\\Final.xls\\");
@@ -304,9 +308,9 @@ public class JExcelAPIDemo
 
                 for (j = 0; j < array.length; j++)
                 {
-                    for (k = 0; k < stopwords.length; k++)
+                    for (k = 0; k < stopwords.size(); k++)
                     {
-                        if (array[j].equalsIgnoreCase(stopwords[k]))
+                        if (array[j].equalsIgnoreCase(stopwords.get(k)))
                             array[j] = " ";
 
                     }
@@ -408,9 +412,9 @@ public class JExcelAPIDemo
 
                 for (j = 0; j < array.length; j++)
                 {
-                    for (k = 0; k < stopwords.length; k++)
+                    for (k = 0; k < stopwords.size(); k++)
                     {
-                        if (array[j].equalsIgnoreCase(stopwords[k]))
+                        if (array[j].equalsIgnoreCase(stopwords.get(k)))
                             array[j] = " ";
 
                     }

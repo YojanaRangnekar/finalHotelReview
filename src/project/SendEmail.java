@@ -1,12 +1,12 @@
-package beproject;
+package project;
 
    import java.util.Properties;    
 
 import javax.mail.*;    
 import javax.mail.internet.*;    
     class SendEmail{  
-        public static final String from = "yojana.neebalit@gmail.com";
-        public static final String password = "123456789ten";
+        public static final String from = "project.webmining@gmail.com";
+        public static final String password = "WebMining!";
         public static void send(String to,String sub,String msg){  
               //Get properties object    
               Properties props = new Properties();    
@@ -38,7 +38,7 @@ import javax.mail.internet.*;
         }  
         public static void main(String[] args) {    
             //from,password,to,subject,message  
-            send("abc@gmail.com","hello javatpoint","How r u?");  
+            send("project.webmining@gmail.com","hello javatpoint","How r u?");  
             //change from, password and to  
         }    
     }  
